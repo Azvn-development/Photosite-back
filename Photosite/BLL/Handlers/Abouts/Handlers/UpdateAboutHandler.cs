@@ -5,7 +5,7 @@ using Photosite.DAL.Repositories.About;
 
 namespace Photosite.BLL.Handlers.Abouts.Handlers
 {
-    public class UpdateAboutHandler : IBaseHandler<UpdateAboutCommand, long>
+    public class UpdateAboutHandler : IBaseHandler<UpdateAboutCommand, UpdateAboutResponse>
     {
         private readonly IAboutRepository _aboutRepository;
         private readonly IMapper _mapper;
@@ -16,14 +16,17 @@ namespace Photosite.BLL.Handlers.Abouts.Handlers
             _mapper = mapper;
         } // UpdateAboutHandler
 
-        public async Task<long> Handle(UpdateAboutCommand command, CancellationToken token)
+        public async Task<UpdateAboutResponse> Handle(UpdateAboutCommand command, CancellationToken token)
         {
             var about = _mapper.Map<AboutEntity>(command.About);
 
             _aboutRepository.Update(about);
             await _aboutRepository.SaveChangesAsync(token);
 
-            return about.Id;
+            return new UpdateAboutResponse
+            {
+                Id = about.Id
+            };
         } // Handle
     }
 }

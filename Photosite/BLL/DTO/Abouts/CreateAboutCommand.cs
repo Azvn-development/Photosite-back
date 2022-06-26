@@ -2,8 +2,13 @@
 
 namespace Photosite.BLL.DTO.Abouts
 {
-    public class CreateAboutCommand : IBaseCommand<long>
+    public class CreateAboutCommand : IBaseCommand<CreateAboutResponse>
     {
         public AboutModel About { get; set; }
+    }
+
+    public class CreateAboutResponse
+    {
+        public long Id { get; set; }
     }
 }

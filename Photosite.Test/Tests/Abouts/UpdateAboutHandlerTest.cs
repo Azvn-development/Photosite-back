@@ -38,7 +38,7 @@ namespace Photosite.Test.Tests.Abouts
             var result = await _mediator.Send(command);
 
             // Assert
-            Assert.That(result, Is.EqualTo(command.About.Id));
+            Assert.That(result.Id, Is.EqualTo(command.About.Id));
         } // UpdateAboutTest
 
         // Source

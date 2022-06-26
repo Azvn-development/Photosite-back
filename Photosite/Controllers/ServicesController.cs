@@ -1,40 +1,39 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Photosite.BLL.DTO.Abouts;
+using Photosite.BLL.DTO.Services;
 
 namespace Photosite.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class AboutsController: BaseController
+    public class ServicesController: BaseController
     {
-
-        public AboutsController(IMediator mediator): base(mediator) { }
+        public ServicesController(IMediator mediator): base(mediator) { }
 
         [HttpGet]
-        public async Task<GetAboutsResponse> GetAll()
+        public async Task<GetServicesResponse> GetAll()
         {
-            return await _mediator.Send(new GetAboutsQuery());
+            return await _mediator.Send(new GetServicesQuery());
         } // GetAll
 
         [HttpPost]
         [Authorize]
-        public async Task<CreateAboutResponse> Create(CreateAboutCommand command)
+        public async Task<CreateServiceResponse> Create(CreateServiceCommand command)
         {
             return await _mediator.Send(command);
         } // Create
 
         [HttpPut]
         [Authorize]
-        public async Task<UpdateAboutResponse> Update(UpdateAboutCommand command)
+        public async Task<UpdateServiceResponse> Update(UpdateServiceCommand command)
         {
             return await _mediator.Send(command);
-        } // Edit
+        } // Update
 
         [HttpDelete]
         [Authorize]
-        public async Task<long> Delete(DeleteAboutCommand command)
+        public async Task<long> Delete(DeleteServiceCommand command)
         {
             return await _mediator.Send(command);
         } // Delete

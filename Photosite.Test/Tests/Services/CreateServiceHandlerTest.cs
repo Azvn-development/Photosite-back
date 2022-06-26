@@ -1,12 +1,12 @@
 ﻿using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using NUnit.Framework;
-using Photosite.BLL.DTO.Abouts;
+using Photosite.BLL.DTO.Services;
 using System.Threading.Tasks;
 
-namespace Photosite.Test.Tests.Abouts
+namespace Photosite.Test.Tests.Services
 {
-    public class CreateAboutHandlerTest : BaseTest
+    public class CreateServiceHandlerTest : BaseTest
     {
         private IMediator _mediator;
 
@@ -16,29 +16,27 @@ namespace Photosite.Test.Tests.Abouts
         }
 
         [Test]
-        [TestCaseSource(nameof(CreateAboutTestSource))]
-        public async Task CreateAboutTest(CreateAboutCommand command)
+        [TestCaseSource(nameof(CreateServiceTestSource))]
+        public async Task CreateServiceTest(CreateServiceCommand command)
         {
             // Act
             var result = await _mediator.Send(command);
 
             // Assert
             Assert.That(result.Id, Is.EqualTo(1));
-        } // CreateAboutTest
+        } // CreateServiceTest
 
         // Source
-        private static readonly object[] CreateAboutTestSource = new[]
+        private static readonly object[] CreateServiceTestSource = new[]
         {
             new object[]
             {
-                new CreateAboutCommand
+                new CreateServiceCommand
                 {
-                    About = new()
+                    Service = new()
                     {
                         Id = 0,
-                        Text = "Text",
-                        Title = "Title",
-                        Image = "12345"
+                        Name = "Service",
                     }
                 }
             }

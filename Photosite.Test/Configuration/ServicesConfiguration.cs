@@ -6,6 +6,7 @@ using Photosite.BLL.Mapping;
 using Photosite.Configuration.Options;
 using Photosite.DAL;
 using Photosite.DAL.Repositories.About;
+using Photosite.DAL.Repositories.Service;
 using Photosite.DAL.Repositories.User;
 using System;
 
@@ -24,7 +25,8 @@ namespace Photosite.Test.Configuration
             services.AddScoped(db => dbContext);
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IAboutRepository, AboutRepository>();
-            
+            services.AddScoped<IServiceRepository, ServiceRepository>();
+
             services.AddMediatR(typeof(IBaseHandler<,>).Assembly);
 
             return services.BuildServiceProvider();

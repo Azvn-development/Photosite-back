@@ -2,6 +2,7 @@
 using Photosite.BLL.Handlers.Abouts.Validators;
 using Photosite.BLL.Mapping;
 using Photosite.DAL.Repositories.About;
+using Photosite.DAL.Repositories.Service;
 using Photosite.DAL.Repositories.User;
 
 namespace Photosite.Configuration
@@ -16,6 +17,7 @@ namespace Photosite.Configuration
 
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IAboutRepository, AboutRepository>();
+            services.AddScoped<IServiceRepository, ServiceRepository>();
 
             return services;
         } // AddServicesConfiguration
